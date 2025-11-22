@@ -14,7 +14,7 @@ export const book: Book[] = [
 
 export interface IBookRepository {
     getAllBooks(): Book[];
-    getBodyById(id: string): Book | undefined;
+    getBookById(id: string): Book | undefined;
     createBook(book: Book): Book; 
 }
 
@@ -22,7 +22,7 @@ export class BookRepository implements IBookRepository {
     getAllBooks(): Book[] {
         return book;
     }
-    getBodyById(id: string): Book | undefined {
+    getBookById(id: string): Book | undefined {
         return book.find(bk => bk.id ===id);
     }
     createBook(newBook: Book): Book {

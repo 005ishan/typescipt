@@ -2,6 +2,7 @@ import { IBookRepository, BookRepository } from "../repositories/book.repository
 import { Book } from "../types/book.type";
 import { CreateBookDTO } from "../dtos/book.dto";
 
+
 let bookRepository: IBookRepository = new BookRepository();
 
 export class BookService {
@@ -17,11 +18,16 @@ export class BookService {
                     }
                 })
                 return transformedBooks;
-    } 
+    }
+     
+    getBookById = (id: string) : Book | undefined => {
+        return bookRepository.getBookById(id);
+    }
+
     createBook = (bookData: CreateBookDTO): Book => {
         const newBook: Book = {...bookData};
         //same is {id: bookData.id, title: bookData.title}
-        let existingBook = bookRepository.getBodyById(newBook.id);
+        let existingBook = bookRepository.getBookById(newBook.id);
         if(existingBook){
             throw new Error("Book ID already exists");
         }
