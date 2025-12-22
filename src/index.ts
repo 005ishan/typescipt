@@ -2,6 +2,10 @@ import express, { Application, Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import bookRoutes from './routes/book.route';
 import { title } from 'process';
+import dotenv from "dotenv";
+dotenv.config();
+//can use .env variable below this
+console.log(process.env.PORT);
 
 const app: Application = express();
 const PORT: number = 3000;
