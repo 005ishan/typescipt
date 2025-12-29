@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import { string } from "zod";
 dotenv.config();
 
 export const PORT: number =
@@ -7,3 +8,6 @@ export const MONGODB_URI: string =
     process.env.MONGODB_URI || 'mongodb://localhost:27017/defaultdb';
 //Application level constants, with fallbacks
 //if .env variables are not set
+
+export const JWT_SECRET: string = 
+    process.env.JWT_SECRET || 'default'
