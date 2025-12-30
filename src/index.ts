@@ -2,6 +2,7 @@ import express, { Application, Request, Response } from "express";
 import bodyParser from "body-parser";
 import bookRoutes from "./routes/book.route";
 import authRoutes from "./routes/auth.route";
+import authUserRouter from "./routes/admin/user.route";
 import { connectDatabase } from "./database/mongodb";
 import { PORT } from "./config";
 
@@ -16,6 +17,7 @@ const app: Application = express();
 
 app.use(bodyParser.json());
 
+app.use("/api/admin/users", authUserRouter);
 app.use("/api/auth", authRoutes);
 app.use("/api/books", bookRoutes);
 

@@ -4,9 +4,20 @@ import { Request, Response } from "express";
 
 let adminUserService = new AdminUserService();
 
-export class AdiminUserController {
+export class AdminUserController {
   async createUser(req: Request, res: Response) {
-    //can be same as AuthController.register
+    try {
+      const user = await adminUserService.createUser(req.body);
+      return res.status(201).json({
+        success: true,
+        data: user
+      });
+    } catch (err: any) {
+      return res.status(err.statusCode || 500).json({
+        success: false,
+        message: err.message
+      });
+    }
   }
   async getOneUser(req: Request, res: Response) {
     try {
